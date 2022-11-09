@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using ProductsValidation.Models;
 using ProductsValidation.Services;
@@ -43,22 +46,28 @@ namespace ProductsValidation.Controllers
             {
                 return View(prod);
             }
-
             return View("NotExists");
         } 
         [HttpPost]
         public IActionResult Edit(Product product)
         {
-            myProducts[myProducts.FindIndex(prod => prod.Id == product.Id)] = product;
-            return View(product);
+            if (ModelState.IsValid)
+            {
+                myProducts[myProducts.FindIndex(prod => prod.Id == product.Id)] = product;
+                return View(product);
+            }
+            return View();
         }
-
         
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            myProducts.Add(product);
-            return View("View", product);
+            if (ModelState.IsValid)
+            {
+                myProducts.Add(product);
+                return View("View", product);
+            }
+            return View();
         }
 
         public IActionResult Create()
