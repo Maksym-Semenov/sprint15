@@ -33,7 +33,6 @@ namespace ProductsValidation.Models
         public string Name { get; set; }
 
         [MinLength(2, ErrorMessage ="Length of description must be 2 or more symbols")]
-        [Compare (nameof(Name))]
         public string Description { get; set; }
 
         [Range (0, 100000)]

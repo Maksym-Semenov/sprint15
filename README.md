@@ -4,7 +4,7 @@
 1. **Price**: value should be within boundaries 0 and 100000
 2. **Name**: mandatory field
 3. **Description**: 
-   - not mandatory fild. 
+   - not mandatory fild.
    - if set, length sould be longer than 2 symbols
    - should not be equal to Name but should start with the Name of the product
 4. **Type**: enum with values: *Toy, Technique, Clothes, Transport* - make this field displayed with a SelectList on Views for editing and creation to make impossible entering wrong value.
